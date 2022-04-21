@@ -407,7 +407,7 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
             try:
                 resp = requests.get(link, timeout=10)
                 if resp.status_code == 200:
-                    file_name = str(time()).replace("./_", ".") + ".torrent"
+                    file_name = str(time()).replace("./_/-", ".") + ".torrent"
                     with open(file_name, "wb") as t:
                         t.write(resp.content)
                     link = str(file_name)
