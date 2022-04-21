@@ -353,7 +353,8 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
                 if is_url(reply_text) or is_magnet(reply_text):
                     link = reply_text.strip()
             elif isQbit:
-                file_name = str(time()).replace(".", ".") + ".torrent"
+                file_name = str(time()).replace(".", " ") + ".torrent"
+                print(file_name)
                 link = file.get_file().download(custom_path=file_name)
             elif file.mime_type != "application/x-bittorrent":
                 listener = MirrorListener(bot, update, isZip, extract, isQbit, isLeech, pswd, tag)
@@ -407,7 +408,8 @@ def _mirror(bot, update, isZip=False, extract=False, isQbit=False, isLeech=False
             try:
                 resp = requests.get(link, timeout=10)
                 if resp.status_code == 200:
-                    file_name = str(time()).replace("./_/-", ".") + ".torrent"
+                    file_name = str(time()).replace(".", " ") + ".torrent"
+                    print(file_name)
                     with open(file_name, "wb") as t:
                         t.write(resp.content)
                     link = str(file_name)
